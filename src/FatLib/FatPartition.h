@@ -59,7 +59,7 @@ class FatPartition {
     return m_sectorsPerClusterShift + m_bytesPerSectorShift;
   }
   /** \return Number of bytes in a cluster. */
-  uint16_t bytesPerCluster() const {
+  uint32_t bytesPerCluster() const {
     return m_bytesPerSector << m_sectorsPerClusterShift;
   }
   /** \return Number of bytes per sector. */
