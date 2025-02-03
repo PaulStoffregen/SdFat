@@ -850,11 +850,9 @@ bool SdioCard::readData(uint8_t* dst) {
     SDHC_PROCTL |= SDHC_PROCTL_SABGREQ;
     interrupts();
   }
-  if (waitTimeout(isBusyFifoRead)) {
-    return sdError(SD_CARD_ERROR_READ_FIFO);
-  }
   for (uint32_t iw = 0 ; iw < 512/(4*FIFO_WML); iw++) {
-    while (0 == (SDHC_PRSSTAT & SDHC_PRSSTAT_BREN)) {
+    if (waitTimeout(isBusyFifoRead)) {
+      return sdError(SD_CARD_ERROR_READ_FIFO);
     }
     for (uint32_t i = 0; i < FIFO_WML; i++) {
       p32[i] = SDHC_DATPORT;
@@ -1012,11 +1010,9 @@ bool SdioCard::writeData(const uint8_t* src) {
     SDHC_PROCTL |= SDHC_PROCTL_CREQ;
   }
   SDHC_PROCTL |= SDHC_PROCTL_SABGREQ;
-  if (waitTimeout(isBusyFifoWrite)) {
-    return sdError(SD_CARD_ERROR_WRITE_FIFO);
-  }
   for (uint32_t iw = 0 ; iw < 512/(4*FIFO_WML); iw++) {
-    while (0 == (SDHC_PRSSTAT & SDHC_PRSSTAT_BWEN)) {
+    if (waitTimeout(isBusyFifoWrite)) {
+      return sdError(SD_CARD_ERROR_WRITE_FIFO);
     }
     for (uint32_t i = 0; i < FIFO_WML; i++) {
       SDHC_DATPORT = p32[i];
