@@ -334,7 +334,7 @@ struct FreeClusterCountStruct {
 };
 
 //------------------------------------------------------------------------------
-void FatPartition::freeClusterCount_cb_fat16(uint32_t sector, uint8_t *buf, void *context) {
+void FatPartition::freeClusterCount_cb_fat16(uint32_t sector __attribute__((unused)), uint8_t *buf, void *context) {
    struct FreeClusterCountStruct *state = (struct FreeClusterCountStruct *)context;
   uint16_t *p = (uint16_t *)buf;
   unsigned int n = state->clusters_to_do;
@@ -347,7 +347,7 @@ void FatPartition::freeClusterCount_cb_fat16(uint32_t sector, uint8_t *buf, void
 }
 
 //------------------------------------------------------------------------------
-void FatPartition::freeClusterCount_cb_fat32(uint32_t sector, uint8_t *buf, void *context) {
+void FatPartition::freeClusterCount_cb_fat32(uint32_t sector __attribute__((unused)), uint8_t *buf, void *context) {
   struct FreeClusterCountStruct *state = (struct FreeClusterCountStruct *)context;
   uint32_t *p = (uint32_t *)buf;
   unsigned int n = state->clusters_to_do;
