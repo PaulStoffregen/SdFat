@@ -273,5 +273,9 @@
 #define IOMUXC_SW_PAD_CTL_PAD_PUS_MASK  ((0x3)<<14)
 #define IOMUXC_SW_PAD_CTL_PAD_DSE(n)    (((n)&0x7)<<3)
 #define IOMUXC_SW_PAD_CTL_PAD_DSE_MASK  ((0x7)<<3)
+
+// Needed to prevent clash with EventResponder functions 
+extern uint8_t yield_active_check_flags;
+
 #endif  // defined(__IMXRT1062__)
 #endif  // SdioTeensy_h
