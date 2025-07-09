@@ -60,9 +60,9 @@ class MySpiClass : public SdSpiBaseClass {
   SPISettings m_spiSettings;
 } mySpi;
 #if ENABLE_DEDICATED_SPI
-#define SD_CONFIG SdSpiConfig(SD_CS_PIN, DEDICATED_SPI, SD_SCK_MHZ(50), &mySpi)
+#define SD_CONFIG SdSpiConfig(SD_CS_PIN, DEDICATED_SPI, SD_SCK_MHZ(25), &mySpi)
 #else  // ENABLE_DEDICATED_SPI
-#define SD_CONFIG SdSpiConfig(SD_CS_PIN, SHARED_SPI, SD_SCK_MHZ(50), &mySpi)
+#define SD_CONFIG SdSpiConfig(SD_CS_PIN, SHARED_SPI, SD_SCK_MHZ(25), &mySpi)
 #endif  // ENABLE_DEDICATED_SPI
 SdFat sd;
 

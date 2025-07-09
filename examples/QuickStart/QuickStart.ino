@@ -15,7 +15,7 @@ const int8_t DISABLE_CHIP_SELECT = -1;
 //
 // Test with reduced SPI speed for breadboards.  SD_SCK_MHZ(4) will select
 // the highest speed supported by the board that is not over 4 MHz.
-// Change SPI_SPEED to SD_SCK_MHZ(50) for best performance.
+// Change SPI_SPEED to SD_SCK_MHZ(25) for best performance.
 #define SPI_SPEED SD_SCK_MHZ(4)
 //------------------------------------------------------------------------------
 #if SD_FAT_TYPE == 0

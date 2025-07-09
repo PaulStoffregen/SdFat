@@ -26,7 +26,7 @@ const uint8_t SD_CS_PIN = SDCARD_SS_PIN;
 #endif  // SDCARD_SS_PIN
 
 // Try max SPI clock for an SD. Reduce SPI_CLOCK if errors occur.
-#define SPI_CLOCK SD_SCK_MHZ(50)
+#define SPI_CLOCK SD_SCK_MHZ(25)
 
 // Try to select the best SD card configuration.
 #if HAS_SDIO_CLASS

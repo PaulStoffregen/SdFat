@@ -10,7 +10,7 @@
 // SD chip select pin.
 #define SD_CS_PIN SS
 
-#define SD_CONFIG SdSpiConfig(SD_CS_PIN, SHARED_SPI, SD_SCK_MHZ(50))
+#define SD_CONFIG SdSpiConfig(SD_CS_PIN, SHARED_SPI, SD_SCK_MHZ(25))
 
 SdFat sd;
 
