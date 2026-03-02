@@ -417,6 +417,9 @@ typedef uint8_t SdCsPin_t;
 #endif  // defined(__MK64FX512__) || defined(__MK66FX1M0__)
 #if defined(__IMXRT1062__)
 #define HAS_SDIO_CLASS 1
+#ifndef BUILTIN_SDCARD
+#define BUILTIN_SDCARD 254
+#endif  // BUILTIN_SDCARD
 #endif  // defined(__IMXRT1062__)
 //------------------------------------------------------------------------------
 /**
