@@ -23,9 +23,11 @@
  * DEALINGS IN THE SOFTWARE.
  */
 #if defined(__MK64FX512__) || defined(__MK66FX1M0__) || defined(__IMXRT1062__)
+#include "EventResponder.h"
 #include "SdioTeensy.h"
 #include "SdCardInfo.h"
 #include "SdioCard.h"
+
 //==============================================================================
 // limit of K66 due to errata KINETIS_K_0N65N.
 const uint32_t MAX_BLKCNT = 0XFFFF;
@@ -598,7 +600,14 @@ static bool yieldTimeout(bool (*fcn)()) {
       m_busyFcn = 0;
       return true;
     }
+	
+	// Prevent EventResponder running, as the 
+	// response function may attempt SD access
+	uint8_t old_check_flags = yield_active_check_flags;
+	yield_active_check_flags &= ~YIELD_CHECK_EVENT_RESPONDER; 
     yield();
+	yield_active_check_flags = old_check_flags; // revert to old response
+
   }
   m_busyFcn = 0;
   return false;  // Caller will set errorCode.
