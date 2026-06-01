@@ -783,6 +783,9 @@ class FsBaseFile {
     return m_fFile ? m_fFile->write(buf, count) :
            m_xFile ? m_xFile->write(buf, count) : 0;
   }
+  size_t write(const uint8_t * buf, size_t count) {
+    return write((const void *)buf, count);
+  }
 
  private:
   newalign_t m_fileMem[FS_ALIGN_DIM(ExFatFile, FatFile)];
